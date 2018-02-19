@@ -12,7 +12,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Utilites related to JSON parsing. */
 public class JsonUtils {
+    /**
+     * Parses the given json into a Sandwich object
+     *
+     * @param json to be parsed
+     * @return an object of Sandwich class
+     * @throws JSONException If JSON data cannot be properly parsed
+     */
     public static Sandwich parseSandwichJson(String json) throws JSONException {
 
         final String SANDWICH_NAME = "name";
@@ -37,12 +45,7 @@ public class JsonUtils {
         JSONArray ingredientsJsonArray = sandwichJson.getJSONArray(SANDWICH_INGREDIENTS);
         ArrayList<String> ingredients = getArrayList(ingredientsJsonArray);
 
-        return new Sandwich(mainName,
-                alsoKnownAs,
-                placeOfOrigin,
-                description,
-                image,
-                ingredients);
+        return new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
     }
     /**
      * This method Converts a JSONArray to an ArrayList of Strings

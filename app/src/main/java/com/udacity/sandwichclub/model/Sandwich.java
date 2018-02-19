@@ -26,6 +26,26 @@ public class Sandwich {
         this.ingredients = ingredients;
     }
 
+    /** Returns the AlsoKnownAs List as a String with the elements seperated by a comma */
+    public String getAkaAsString(){
+        if(alsoKnownAs.size() == 0) return "";
+
+        String akaString = alsoKnownAs.get(0);
+        for (int i = 1; i < alsoKnownAs.size(); i++)
+            akaString += ", " + alsoKnownAs.get(i);
+        return akaString + ".";
+    }
+
+    /** Returns the ingredients List as a String with the elements seperated by a comma */
+    public String getIngredientsAsString(){
+        if(ingredients.size() == 0) return "";
+
+        String ingredientsString = ingredients.get(0);
+        for (int i = 1; i < ingredients.size(); i++)
+            ingredientsString += ", " + ingredients.get(i);
+        return ingredientsString + ".";
+    }
+
     public String getMainName() {
         return mainName;
     }

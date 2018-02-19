@@ -1,14 +1,17 @@
 package com.udacity.sandwichclub;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
+import com.udacity.sandwichclub.databinding.ActivityDetailBinding;
 
 import org.json.JSONException;
 
@@ -22,7 +25,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ImageView ingredientsIv = findViewById(R.id.image_iv);
+        ActivityDetailBinding activityDetailBinding;
+        activityDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -53,9 +57,13 @@ public class DetailActivity extends AppCompatActivity {
         populateUI();
         Picasso.with(this)
                 .load(sandwich.getImage())
-                .into(ingredientsIv);
-
+                .into(activityDetailBinding.imageIv);
         setTitle(sandwich.getMainName());
+
+        activityDetailBinding.alsoKnownTv.setText(sandwich.getAkaAsString());
+        activityDetailBinding.originTv.setText(sandwich.getPlaceOfOrigin());
+        activityDetailBinding.ingredientsTv.setText(sandwich.getIngredientsAsString());
+        activityDetailBinding.descriptionTv.setText(sandwich.getDescription());
     }
 
     private void closeOnError() {
