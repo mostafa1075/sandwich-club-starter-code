@@ -6,8 +6,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -75,7 +75,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/ingredients_tv"
                 app:layout_constraintTop_toTopOf="@+id/description_label"
-                tools:text="Bosna is a spicy Austrian fast food dish, said to have originated in either Salzburg or Linz. It is now popular all over western Austria and southern Bavaria." />
+                tools:text="Bosna is a spicy Austrian fast food dish, said to have originated in either Salzburg or Linz. It is now popular all over western Austria and southern Bavaria."
+                android:layout_marginRight="16dp" />
 
             <TextView
                 android:id="@+id/ingredients_tv"
@@ -85,7 +86,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/origin_tv"
                 app:layout_constraintTop_toTopOf="@+id/ingredients_label"
-                tools:text="White bread, Bratwurst, Onions, Tomato ketchup, Mustard, Curry powder" />
+                tools:text="White bread, Bratwurst, Onions, Tomato ketchup, Mustard, Curry powder"
+                android:layout_marginRight="16dp" />
 
             <TextView
                 android:id="@+id/also_known_tv"

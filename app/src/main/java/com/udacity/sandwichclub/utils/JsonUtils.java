@@ -14,6 +14,15 @@ import java.util.List;
 
 /** Utilites related to JSON parsing. */
 public class JsonUtils {
+
+    public static final String SANDWICH_NAME = "name";
+    public static final String SANDWICH_MAIN_NAME = "mainName";
+    public static final String SANDWICH_AKA = "alsoKnownAs";
+    public static final String SANDWICH_ORIGIN = "placeOfOrigin";
+    public static final String SANDWICH_DESCRIPTION = "description";
+    public static final String SANDWICH_IMAGE = "image";
+    public static final String SANDWICH_INGREDIENTS = "ingredients";
+
     /**
      * Parses the given json into a Sandwich object
      *
@@ -23,24 +32,16 @@ public class JsonUtils {
      */
     public static Sandwich parseSandwichJson(String json) throws JSONException {
 
-        final String SANDWICH_NAME = "name";
-        final String SANDWICH_MAIN_NAME = "mainName";
-        final String SANDWICH_AKA = "alsoKnownAs";
-        final String SANDWICH_ORIGIN = "placeOfOrigin";
-        final String SANDWICH_DESCRIPTION = "description";
-        final String SANDWICH_IMAGE = "image";
-        final String SANDWICH_INGREDIENTS = "ingredients";
-
         JSONObject sandwichJson = new JSONObject(json);
         JSONObject sandwichNameObject = sandwichJson.getJSONObject(SANDWICH_NAME);
-        String mainName = sandwichNameObject.getString(SANDWICH_MAIN_NAME);
+        String mainName = sandwichNameObject.optString(SANDWICH_MAIN_NAME);
 
         JSONArray akaJsonArray = sandwichNameObject.getJSONArray(SANDWICH_AKA);
         ArrayList<String> alsoKnownAs = getArrayList(akaJsonArray);
 
-        String placeOfOrigin = sandwichJson.getString(SANDWICH_ORIGIN);
-        String description = sandwichJson.getString(SANDWICH_DESCRIPTION);
-        String image = sandwichJson.getString(SANDWICH_IMAGE);
+        String placeOfOrigin = sandwichJson.optString(SANDWICH_ORIGIN);
+        String description = sandwichJson.optString(SANDWICH_DESCRIPTION);
+        String image = sandwichJson.optString(SANDWICH_IMAGE);
 
         JSONArray ingredientsJsonArray = sandwichJson.getJSONArray(SANDWICH_INGREDIENTS);
         ArrayList<String> ingredients = getArrayList(ingredientsJsonArray);
@@ -55,9 +56,9 @@ public class JsonUtils {
      * @throws JSONException If JSON data cannot be properly parsed
      */
     private static ArrayList<String> getArrayList(JSONArray jsonArray) throws JSONException {
-        ArrayList<String> arrayList = new ArrayList<String>();
+        ArrayList<String> arrayList = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++)
-            arrayList.add(jsonArray.getString(i));
+            arrayList.add(jsonArray.optString(i));
         return arrayList;
     }
 }
